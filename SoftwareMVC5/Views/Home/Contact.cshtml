@@ -1,0 +1,82 @@
+﻿@model List<SoftwareMVC5.Models.Pelicula>
+
+
+@{
+    ViewBag.Title = "Contact";
+
+    
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<h3>@ViewData["ezequielMensaje"]</h3>
+
+
+
+<div>
+    Mostrando @Model.Count  Peliculas <!--Determina la cantidad elementos que tiene la lista-->
+</div>
+
+<table class="table table-striped" >
+    <thead>
+        <tr>
+            <td>Titulo</td>
+            <td>Genero</td>
+        </tr>
+    </thead>
+
+    <tbody>
+       @foreach (var item in Model)
+       {
+
+           <!---Condicion para determinar si la Pelicula esta disponible
+               y que cambie de color en ese caso con una 
+               clase de CSS si esta en cartelera o no-->
+
+           <!--var claseFila = string.Empty;
+
+           if (item.EstaEnCartelera==true)
+           {
+               claseFila = "danger";--><!--Clase de Boostrap-->
+           <!--}
+           else
+           {
+               claseFila = "sucess";//Clase de Boostrap
+           }-->
+
+           //Operador ternario
+           //Comentarios en Razon
+           @*Se coloca la clase DANGER si la pelicula no esta en cartelera*@
+           var claseFila = (item.EstaEnCartelera) ? string.Empty : "danger";
+
+
+           <tr class="@claseFila">
+               <td>@item.Titulo</td>
+               <td>@item.Genero</td>
+           </tr>
+
+       }
+    </tbody>
+</table>
+
+@*<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>*@
+
+
+<!--Forumlario simple-->
+
+<!--<form action="/Home/Contact" method="post">-->
+    <!--la propiedad NAME es la que se envia en el POST Y tiene que coincidir
+        con el NOMBRE del parametro del ACTION del Controller-->
+    <!--<input type="number"  id="edadR" name="edadR" value="edadR" />
+    <input type="submit" name="" value="Enviar" />
+
+</form>-->

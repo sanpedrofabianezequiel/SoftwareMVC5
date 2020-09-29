@@ -1,0 +1,42 @@
+﻿<!--Indicamos que Model estamos esperando o vamos a USAR-->
+<!--Indicamos que Model estamos esperando o vamos a USAR-->
+<!--Indicamos que Model estamos esperando o vamos a USAR-->
+@model List<SoftwareMVC5.Models.Pelicula>
+<!--Lo definimos con model en miniscula y lo usamos con MODEL en mayusucla-->
+<!--Lo definimos con model en miniscula y lo usamos con MODEL en mayusucla-->
+<!--Lo definimos con model en miniscula y lo usamos con MODEL en mayusucla-->
+
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<!--Recorremos la lista con un ForEach-->
+<table class="table">
+    <thead>
+        <tr>
+            <td>Titulo</td>
+            <td>Duracion</td>
+            <td>Pais</td>
+            <td>Lanzamiento</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.Duracion</td>
+                <td>@item.Pais</td>
+                <td>@item.Publicacion.ToString("dd/MM/yyyyy")</td>
+            </tr>
+
+
+
+        }
+
+    </tbody>
+
+</table>
