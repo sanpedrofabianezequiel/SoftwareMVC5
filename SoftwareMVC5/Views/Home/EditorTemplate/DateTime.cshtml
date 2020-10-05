@@ -1,17 +1,12 @@
-﻿
-@{
-    Layout = null;
+﻿@model DateTime?
+
+@if (!Model.HasValue)<!--Si no viene vacio-->
+{
+<input type="date" name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")" 
+       value=""id="@ViewData.TemplateInfo.GetFullHtmlFieldId("")"/> 
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DateTime</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+else
+{<!--Si no viene vacio-->
+<input type="date" name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")"
+       value="@Model.Value.ToString("dd/MM/yyyy")" id="@ViewData.TemplateInfo.GetFullHtmlFieldId("")"/>
+}
