@@ -3,8 +3,8 @@
 
 @{
     ViewBag.Title = "Contact";
+    Layout = null;
 
-    
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
@@ -50,13 +50,17 @@
 
 
            <tr class="@claseFila">
-               <td>@item.Titulo</td>
+               <td>
+                        @item.Titulo
+               </td>
                <td>@item.Genero</td>
            </tr>
 
        }
     </tbody>
 </table>
+
+
 
 @*<address>
     One Microsoft Way<br />

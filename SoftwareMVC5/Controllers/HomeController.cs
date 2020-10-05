@@ -25,12 +25,30 @@ namespace SoftwareMVC5.Controllers
 
         public ActionResult Index()
         {
+            var persona = new Persona()
+            {
+                Nombre = "Ezequiel",
+                Edad = 27,
+                Empleado = true,
+                Nacimiento=  new DateTime(2020/10/5)
+            };
+
+            ViewBag.Propiedad =persona;
             return View();
         }
+        #region Clases Test
+        public class Persona
+        {
+            public string Nombre { get; set; }
+            public int Edad { get; set; }
+            public bool Empleado { get; set; }
+            public DateTime Nacimiento { get; set; }
+        }
+        #endregion
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your application description page." ;
             //Creamos una Instancia de nuestro ServicePelicula
             var peliculaService = new PeliculasService();
             var model = peliculaService.ObtenerPelicula();//Retorna un tipo Pelicula
@@ -38,11 +56,14 @@ namespace SoftwareMVC5.Controllers
             return View(models);
         }
 
-
+    
 
         // GET URL=>Home/Contact
         //Recorradar que el QUERY == Nombre Variable
         [HttpGet]
+        [ChildActionOnly] //Este metodo solo se va  ejecutar dentro de una vista
+                            //es decir que da error si entra directo ala URL de
+                            //contact. es para evitar que pierda el MasterPage
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page." ;
@@ -70,6 +91,17 @@ namespace SoftwareMVC5.Controllers
 
 
         #region SINTAXIS
+        //---------------------------LinkResoult
+        //public ActionResult About(int edad)
+        //{
+        //    ViewBag.Message = "Your application description page."+ edad.ToString();
+        //    //Creamos una Instancia de nuestro ServicePelicula
+        //    var peliculaService = new PeliculasService();
+        //    var model = peliculaService.ObtenerPelicula();//Retorna un tipo Pelicula
+        //    var models = peliculaService.ObtenerPeliculas();
+        //    return View(models);
+        //}
+
 
         //---------------------------------HTTP
         //[HttpGet]

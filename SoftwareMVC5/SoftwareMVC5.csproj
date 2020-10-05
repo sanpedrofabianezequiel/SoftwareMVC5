@@ -167,9 +167,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\MiAction.cshtml" />
+    <Content Include="Views\Home\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Home\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Home\DisplayTemplates\Persona.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\EditorTemplate\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -32,6 +32,12 @@
         <!--ACA se renderiza nuestras PAGINAS-->
         @RenderBody()
         <hr />
+
+
+        <!--Render Acction-->
+        @{Html.RenderAction("Contact","Home");}
+        @Html.Action("Contact","Home")
+
         <footer>
             <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
         </footer>
