@@ -11,24 +11,8 @@
 @Html.Display("Propiedad")<!---->
 @Html.Editor("Propiedad")
 
-@{ 
-    var listado = new List<SelectListItem>()
-    {
-        new SelectListItem()
-        {
-            Text="Si",Value="1"
-        },
-        new SelectListItem()
-        {
-            Text="No",Value="2"
-        },
-         new SelectListItem()
-        {
-            Text="Tal vez",Value="3",Disabled=true
-        }
-    };
 
-}
 <br />
 <label>Escoja una Opcion</label>
-@Html.DropDownList("SeleccionDrow", listado);
+@Html.DropDownList("SeleccionDrow", (List<SelectListItem>) ViewBag.MiListado2);
+

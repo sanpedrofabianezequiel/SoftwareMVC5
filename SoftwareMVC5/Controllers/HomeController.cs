@@ -1,8 +1,10 @@
 ﻿using SoftwareMVC5.DAL;
+using SoftwareMVC5.Models;
 using SoftwareMVC5.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,12 +32,70 @@ namespace SoftwareMVC5.Controllers
                 Nombre = "Ezequiel",
                 Edad = 27,
                 Empleado = true,
-                Nacimiento=  new DateTime(2020/10/5)
+                Nacimiento = new DateTime(2020 / 10 / 5)
             };
 
-            ViewBag.Propiedad =persona;
+            // ViewBag.Propiedad = persona;
+            ViewBag.MiListado = ObtenerListado();
+            ViewBag.MiListado2 = ToListSelectListItem<ResultadoOperacion>();
             return View();
         }
+
+
+        #region Metodos Test
+        public List<SelectListItem> ObtenerListado(){
+
+            return new List<SelectListItem>(){
+
+                new SelectListItem()
+                {
+                    Text="Si",Value="1"
+                },
+                new SelectListItem()
+                {
+                    Text="No",Value="2"
+                },
+                 new SelectListItem()
+                {
+                    Text="Tal vez",Value="3",Disabled=true
+                }
+            };
+         }
+    
+        public List<SelectListItem> ToListSelectListItem<T>()
+        {
+            var resultado = new List<SelectListItem>();
+            //Codigo
+            //Determinamos el Tipo de valor
+            var t = typeof(T);
+            if (!t.IsEnum) { throw new ApplicationException("El Tipo debe ser Enum"); }
+            ////Obtenemos sus miembros-----------------
+
+            var members = t.GetFields(BindingFlags.Public | BindingFlags.Static);
+            //Recorremos los miembros-----------
+            foreach(var item in members)
+            {
+                var atributoDescripcion = item.GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute),false);
+                var descripcion = item.Name;
+
+                //----------------------
+                if(atributoDescripcion.Any())//Determinamos si tiene elementos
+                {
+                    descripcion = ((System.ComponentModel.DescriptionAttribute)atributoDescripcion[0]).Description;
+                }
+                //----------------------
+                var valor = ((int)Enum.Parse(t, item.Name));
+                //Agregamos los elementos al DropDownList
+                resultado.Add(new SelectListItem()
+                {
+                    Text=descripcion,
+                    Value=valor.ToString()
+                });
+
+            }
+            return resultado;
+        }
+        #endregion
         #region Clases Test
         public class Persona
         {
